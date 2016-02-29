@@ -50,7 +50,7 @@ static ulong get_PLLCLK(int pllreg)
 
 #if defined(CONFIG_S3C2440)
 	if (pllreg == MPLL)
-		return 2 * m * (CONFIG_SYS_CLK_FREQ / (p << s));
+		return (2 * m * CONFIG_SYS_CLK_FREQ) / (p << s);
 #endif
 	return (CONFIG_SYS_CLK_FREQ * m) / (p << s);
 

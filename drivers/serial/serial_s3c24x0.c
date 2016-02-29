@@ -72,7 +72,7 @@ static void _serial_setbrg(const int dev_index)
 	int i;
 
 	/* value is calculated so : (int)(PCLK/16./baudrate) -1 */
-	reg = get_PCLK() / (16 * gd->baudrate) - 1;
+	reg = (int)(get_PCLK() / (8 * gd->baudrate) + 1)/2 - 1;
 
 	writel(reg, &uart->ubrdiv);
 	for (i = 0; i < 100; i++)

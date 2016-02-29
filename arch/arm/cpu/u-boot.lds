@@ -32,7 +32,7 @@ SECTIONS
 	 */
 	/DISCARD/ : { *(.rel._secure*) }
 #endif
-	. = 0x00000000;
+	. = CONFIG_SYS_TEXT_BASE;
 
 	. = ALIGN(4);
 	.text :
@@ -40,6 +40,7 @@ SECTIONS
 		*(.__image_copy_start)
 		*(.vectors)
 		CPUDIR/start.o (.text*)
+		board/samsung/tq2440/lowlevel_init.o (.text*)
 		*(.text*)
 	}
 

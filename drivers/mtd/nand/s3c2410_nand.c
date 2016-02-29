@@ -125,9 +125,9 @@ int board_nand_init(struct nand_chip *nand)
 	twrph0 = CONFIG_S3C24XX_TWRPH0;
 	twrph1 =  CONFIG_S3C24XX_TWRPH1;
 #else
-	tacls = 4;
-	twrph0 = 8;
-	twrph1 = 8;
+	tacls = 1;
+	twrph0 = 3;
+	twrph1 = 1;
 #endif
 
 	cfg = S3C2410_NFCONF_EN;
