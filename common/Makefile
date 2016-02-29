@@ -73,7 +73,7 @@ obj-y += flash.o
 obj-$(CONFIG_CMD_KGDB) += kgdb.o kgdb_stubs.o
 obj-$(CONFIG_I2C_EDID) += edid.o
 obj-$(CONFIG_KALLSYMS) += kallsyms.o
-obj-y += splash.o
+obj-$(CONFIG_SPLASH) += splash.o
 obj-$(CONFIG_SPLASH_SOURCE) += splash_source.o
 ifndef CONFIG_DM_VIDEO
 obj-$(CONFIG_LCD) += lcd.o lcd_console.o
@@ -153,7 +153,7 @@ obj-y += cli_simple.o
 obj-y += cli.o
 obj-y += cli_readline.o
 obj-y += command.o
-obj-y += s_record.o
-obj-y += xyzModem.o
+obj-$(CONFIG_CMD_LOAD) += s_record.o
+obj-$(CONFIG_XYZ_MODEM) += xyzModem.o
 
 CFLAGS_env_embedded.o := -Wa,--no-warn -DENV_CRC=$(shell tools/envcrc 2>/dev/null)

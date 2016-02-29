@@ -76,7 +76,7 @@ obj-$(CONFIG_CMD_CRAMFS) += cramfs.o
 obj-$(CONFIG_CMD_LDRINFO) += ldrinfo.o
 obj-$(CONFIG_CMD_LED) += led.o
 obj-$(CONFIG_CMD_LICENSE) += license.o
-obj-y += load.o
+obj-$(CONFIG_CMD_LOAD) += load.o
 obj-$(CONFIG_LOGBUFFER) += log.o
 obj-$(CONFIG_ID_EEPROM) += mac.o
 obj-$(CONFIG_CMD_MD5SUM) += md5sum.o
@@ -100,7 +100,7 @@ obj-$(CONFIG_CMD_PART) += part.o
 ifdef CONFIG_PCI
 obj-$(CONFIG_CMD_PCI) += pci.o
 endif
-obj-y += pcmcia.o
+obj-$(CONFIG_CMD_PCMCIA) += pcmcia.o
 obj-$(CONFIG_CMD_PORTIO) += portio.o
 obj-$(CONFIG_CMD_PXE) += pxe.o
 obj-$(CONFIG_CMD_READ) += read.o
@@ -163,4 +163,4 @@ obj-$(CONFIG_CMD_BLOB) += blob.o
 
 # core command
 obj-y += nvedit.o
-obj-y += disk.o
+obj-$(CONFIG_CMD_DISK) += disk.o

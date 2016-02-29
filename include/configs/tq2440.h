@@ -65,7 +65,6 @@
 #define CONFIG_CMD_PING
 #define CONFIG_CMD_REGINFO
 
-#define CONFIG_SYS_HUSH_PARSER
 #define CONFIG_CMDLINE_EDITING
 
 /* autoboot */

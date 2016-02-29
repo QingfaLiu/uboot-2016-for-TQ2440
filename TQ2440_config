@@ -204,19 +204,19 @@ CONFIG_CMD_CONSOLE=y
 #
 CONFIG_CMD_BOOTD=y
 CONFIG_CMD_BOOTM=y
-CONFIG_CMD_ELF=y
+# CONFIG_CMD_ELF is not set
 CONFIG_CMD_GO=y
-CONFIG_CMD_RUN=y
-CONFIG_CMD_IMI=y
-CONFIG_CMD_IMLS=y
-CONFIG_CMD_XIMG=y
+# CONFIG_CMD_RUN is not set
+# CONFIG_CMD_IMI is not set
+# CONFIG_CMD_IMLS is not set
+# CONFIG_CMD_XIMG is not set
 
 #
 # Environment commands
 #
-CONFIG_CMD_EXPORTENV=y
-CONFIG_CMD_IMPORTENV=y
-CONFIG_CMD_EDITENV=y
+# CONFIG_CMD_EXPORTENV is not set
+# CONFIG_CMD_IMPORTENV is not set
+# CONFIG_CMD_EDITENV is not set
 CONFIG_CMD_SAVEENV=y
 CONFIG_CMD_ENV_EXISTS=y
 
@@ -233,23 +233,23 @@ CONFIG_CMD_CRC32=y
 #
 # Device access commands
 #
-CONFIG_CMD_LOADB=y
-CONFIG_CMD_LOADS=y
+# CONFIG_CMD_LOADB is not set
+# CONFIG_CMD_LOADS is not set
 CONFIG_CMD_FLASH=y
 # CONFIG_CMD_NAND is not set
 # CONFIG_CMD_SF is not set
 # CONFIG_CMD_SPI is not set
 # CONFIG_CMD_I2C is not set
 # CONFIG_CMD_USB is not set
-CONFIG_CMD_FPGA=y
+# CONFIG_CMD_FPGA is not set
 # CONFIG_CMD_GPIO is not set
 
 #
 # Shell scripting commands
 #
-CONFIG_CMD_ECHO=y
-CONFIG_CMD_ITEST=y
-CONFIG_CMD_SOURCE=y
+# CONFIG_CMD_ECHO is not set
+# CONFIG_CMD_ITEST is not set
+# CONFIG_CMD_SOURCE is not set
 # CONFIG_CMD_SETEXPR is not set
 
 #
@@ -260,7 +260,7 @@ CONFIG_CMD_NET=y
 # CONFIG_CMD_TFTPSRV is not set
 # CONFIG_CMD_RARP is not set
 # CONFIG_CMD_DHCP is not set
-CONFIG_CMD_NFS=y
+# CONFIG_CMD_NFS is not set
 # CONFIG_CMD_PING is not set
 # CONFIG_CMD_CDP is not set
 # CONFIG_CMD_SNTP is not set
@@ -271,7 +271,7 @@ CONFIG_CMD_NFS=y
 # Misc commands
 #
 # CONFIG_CMD_TIME is not set
-CONFIG_CMD_MISC=y
+# CONFIG_CMD_MISC is not set
 # CONFIG_CMD_TIMER is not set
 
 #
