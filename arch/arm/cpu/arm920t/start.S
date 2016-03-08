@@ -94,30 +94,25 @@ copyex:
 	bl	cpu_init_crit
 #endif
 
-#define MPLLCON	0x4C000004
-#define CAMDIVN	0x4C000018
-#define MDIV		124
-#define SDIV		1
-#define HDIV		0x2
-#define PDIV		0x1
-	mrc    p15, 0, r1, c1, c0, 0
-	orr    r1, r1, #0xC0000000
-	mcr    p15, 0, r1, c1, c0, 0
+#if defined(CONFIG_S3C2440)
+#define MPLLCON 0x4C000004
+#define UPLLCON 0x4C000008
+#define CAMDIVN 0x4C000018
+
 	/* FCLK : HCLK : PCLK = 1:4:8 */
 	ldr r0, =CLKDIVN
-	ldr r1, =(HDIV<<1)|(PDIV)
+	ldr r1, =(DIVN_UPLL << 3)|(HDIVN<<1)|(PDIVN)
 	str r1, [r0]
 	ldr r0, =CAMDIVN
 	mov r1, #0x0
 	str r1, [r0]
 
-	mrc p15,0,r0,c1,c0,0
-	orr r0, r0, #0xC0000000
-	mcr p15,0,r0,c1,c0,0
+	mrc p15, 0, r0, c1, c0, 0
+	orr r0, r0, #0xc0000000
+	mcr p15, 0, r0, c1, c0, 0
 
-	/* FCLK=528Mhz HCLK=132Mhz PCLK=66Mhz */
-	ldr r0, =MPLLCON
-	ldr r1, =(MDIV<<12)|(PDIV<<4)|SDIV
+	ldr r0, =UPLLCON
+	ldr r1, =(U_M_MDIV << 12)|(U_M_PDIV << 4)|(U_M_SDIV)
 	str r1, [r0]
 	nop
 	nop
@@ -126,9 +121,20 @@ copyex:
 	nop
 	nop
 	nop
+	ldr r0, =MPLLCON
+	ldr r1, =(M_MDIV << 12)|(M_PDIV << 4)|(M_SDIV)
+	str r1, [r0]
+#endif  /* CONFIG_S3C2440 */
 #endif	/* CONFIG_S3C24X0 */
-
-	bl	_main
+	ldr sp, =4096
+	ldr r0, =0x0
+	ldr r1, =CONFIG_SYS_TEXT_BASE
+	ldr r2, =__bss_start
+	ldr r3, =_start
+	sub r2, r2, r3
+	bl Copy2Sdram
+	bl clear_bss
+	ldr pc, =_main
 
 /*------------------------------------------------------------------------------*/
 

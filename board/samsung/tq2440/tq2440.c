@@ -16,13 +16,6 @@
 
 DECLARE_GLOBAL_DATA_PTR;
 
-#define M_MDIV	124
-#define M_PDIV	1
-#define M_SDIV	1
-#define USB_CLOCK 1
-#define U_M_MDIV	56
-#define U_M_PDIV	2
-#define U_M_SDIV	1
 
 static inline void pll_delay(unsigned long loops)
 {
@@ -43,6 +36,8 @@ int board_early_init_f(void)
 
 	/* to reduce PLL lock time, adjust the LOCKTIME register */
 	writel(0xFFFFFFFF, &clk_power->locktime);
+	writel(readl(&clk_power->clkdivn) | (DIVN_UPLL << 3),
+			&clk_power->clkdivn);
 
 	/* configure MPLL */
 	writel((M_MDIV << 12) + (M_PDIV << 4) + M_SDIV,

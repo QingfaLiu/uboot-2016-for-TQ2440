@@ -631,11 +631,20 @@ static int initr_bbmii(void)
 }
 #endif
 
+#ifdef CONFIG_DRIVER_DM9000
+extern int dm9000_initialize(bd_t *bis);
+#endif
+
 #ifdef CONFIG_CMD_NET
 static int initr_net(void)
 {
 	puts("Net:   ");
+#ifdef CONFIG_DRIVER_DM9000
+	puts("dm9000\n");
+	dm9000_initialize(gd->bd);
+#else
 	eth_initialize();
+#endif
 #if defined(CONFIG_RESET_PHY_R)
 	debug("Reset Ethernet PHY\n");
 	reset_phy();

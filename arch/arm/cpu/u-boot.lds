@@ -40,7 +40,7 @@ SECTIONS
 		*(.__image_copy_start)
 		*(.vectors)
 		CPUDIR/start.o (.text*)
-		board/samsung/tq2440/lowlevel_init.o (.text*)
+		board/samsung/tq2440/built-in.o (.text*)
 		*(.text*)
 	}
 
