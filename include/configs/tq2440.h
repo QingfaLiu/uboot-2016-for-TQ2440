@@ -24,7 +24,11 @@
 /* clock config */
 #define HDIVN 2
 #define PDIVN 1
+#if 0
 #define M_MDIV	125
+#else
+#define M_MDIV  92
+#endif
 #define M_PDIV	1
 #define M_SDIV	1
 #define DIVN_UPLL 1
@@ -32,6 +36,7 @@
 #define U_M_PDIV	2
 #define U_M_SDIV	1
 
+#define CONFIG_AUTO_COMPLETE
 #define CONFIG_SYS_TEXT_BASE    0x31000000
 
 #define CONFIG_SYS_ARM_CACHE_WRITETHROUGH
@@ -40,14 +45,15 @@
 #define CONFIG_SYS_CLK_FREQ	12000000
 
 #define CONFIG_DRIVER_DM9000
+#define CONFIG_DM9000_NO_SROM 1
 #define CONFIG_DM9000_BASE  (0x20000000)
 #define DM9000_IO           CONFIG_DM9000_BASE
 #define DM9000_DATA         (CONFIG_DM9000_BASE + 4)
-#define CONFIG_DM9000_NO_SROM
 
 #define CONFIG_NETMASK  255.255.255.0
 #define CONFIG_IPADDR 	192.168.1.3
 #define CONFIG_SERVERIP 192.168.1.100
+#define CONFIG_ETHADDR  00:1A:2B:3C:4D:5E
 
 #define CONFIG_CMDLINE_TAG	/* enable passing of ATAGs */
 #define CONFIG_SETUP_MEMORY_TAGS
@@ -139,9 +145,9 @@
 #define CONFIG_SYS_FLASH_BANKS_LIST     { CONFIG_SYS_FLASH_BASE }
 #define CONFIG_SYS_MAX_FLASH_SECT	(35)
 
-#define CONFIG_ENV_ADDR			(CONFIG_SYS_FLASH_BASE + 0x070000)
-#define CONFIG_ENV_IS_IN_FLASH
-#define CONFIG_ENV_SIZE			0x10000
+#define CONFIG_ENV_IS_IN_NAND          1
+#define CONFIG_ENV_OFFSET              0x40000
+#define CONFIG_ENV_SIZE                    0x20000
 /* allow to overwrite serial and ethaddr */
 #define CONFIG_ENV_OVERWRITE
 
@@ -158,8 +164,12 @@
  * NAND configuration
  */
 #ifdef CONFIG_CMD_NAND
-#define CONFIG_NAND_S3C2410
-#define CONFIG_SYS_S3C2410_NAND_HWECC
+#define CONFIG_NAND_S3C2440
+
+#define CONFIG_S3C2440_NAND_HWECC
+#define CONFIG_SYS_NAND_ECCSIZE 2048
+#define CONFIG_SYS_NAND_ECCBYTES 4
+
 #define CONFIG_SYS_MAX_NAND_DEVICE	1
 #define CONFIG_SYS_NAND_BASE		0x4E000000
 #endif

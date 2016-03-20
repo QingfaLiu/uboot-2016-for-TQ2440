@@ -36,6 +36,11 @@ reset:
 	orr	r0, r0, #0xd3
 	msr	cpsr, r0
 
+	/* enable icache */
+	mrc p15, 0, r0, c1, c0, 0
+	orr r0, r0, #(1<<12)
+	mcr p15, 0, r0, c1, c0, 0
+
 #if	defined(CONFIG_AT91RM9200DK) || defined(CONFIG_AT91RM9200EK)
 	/*
 	 * relocate exception table
@@ -130,9 +135,11 @@ copyex:
 	ldr r0, =0x0
 	ldr r1, =CONFIG_SYS_TEXT_BASE
 	ldr r2, =__bss_start
-	ldr r3, =_start
+	ldr r3, =__image_copy_start
+	adr r4, reset
 	sub r2, r2, r3
-	bl Copy2Sdram
+	cmp r1, r4
+	blgt Copy2Sdram
 	bl clear_bss
 	ldr pc, =_main
 

@@ -102,7 +102,7 @@ static board_info_t dm9000_info;
 
 /* function declaration ------------------------------------- */
 static int dm9000_probe(void);
-static u16 dm9000_phy_read(int);
+//static u16 dm9000_phy_read(int);
 static void dm9000_phy_write(int, u16);
 static u8 DM9000_ior(int);
 static void DM9000_iow(int reg, u8 value);
@@ -281,7 +281,7 @@ dm9000_reset(void)
 */
 static int dm9000_init(struct eth_device *dev, bd_t *bd)
 {
-	int i, oft, lnk;
+	int i, oft/*, lnk*/;
 	u8 io_mode;
 	struct board_info *db = &dm9000_info;
 
@@ -362,7 +362,7 @@ static int dm9000_init(struct eth_device *dev, bd_t *bd)
 	DM9000_iow(DM9000_RCR, RCR_DIS_LONG | RCR_DIS_CRC | RCR_RXEN);
 	/* Enable TX/RX interrupt mask */
 	DM9000_iow(DM9000_IMR, IMR_PAR);
-
+#if 0
 	i = 0;
 	while (!(dm9000_phy_read(1) & 0x20)) {	/* autonegation complete bit */
 		udelay(1000);
@@ -394,6 +394,7 @@ static int dm9000_init(struct eth_device *dev, bd_t *bd)
 		break;
 	}
 	printf("mode\n");
+#endif
 	return 0;
 }
 
@@ -557,6 +558,13 @@ static void dm9000_get_enetaddr(struct eth_device *dev)
 	int i;
 	for (i = 0; i < 3; i++)
 		dm9000_read_srom_word(i, dev->enetaddr + (2 * i));
+#else
+	dev->enetaddr[0] = 0x00;
+	dev->enetaddr[1] = 0x1a;
+	dev->enetaddr[2] = 0x2b;
+	dev->enetaddr[3] = 0x3c;
+	dev->enetaddr[4] = 0x4d;
+	dev->enetaddr[5] = 0x5e;
 #endif
 }
 
@@ -583,6 +591,7 @@ DM9000_iow(int reg, u8 value)
 /*
    Read a word from phyxcer
 */
+#if 0
 static u16
 dm9000_phy_read(int reg)
 {
@@ -599,7 +608,7 @@ dm9000_phy_read(int reg)
 	DM9000_DBG("dm9000_phy_read(0x%x): 0x%x\n", reg, val);
 	return val;
 }
-
+#endif
 /*
    Write a word to phyxcer
 */

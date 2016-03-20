@@ -145,16 +145,16 @@ struct s3c24x0_nand {
 	u32	nfaddr;
 	u32	nfdata;
 #ifndef CONFIG_S3C2410
-	u32	nfeccd0;
-	u32	nfeccd1;
-	u32	nfeccd;
+	u32	nfmeccd0;
+	u32	nfmeccd1;
+	u32	nfseccd;
 #endif
 	u32	nfstat;
 #ifdef CONFIG_S3C2410
 	u32	nfecc;
 #else
-	u32	nfstat0;
-	u32	nfstat1;
+	u32	nfestat0;
+	u32	nfestat1;
 	u32	nfmecc0;
 	u32	nfmecc1;
 	u32	nfsecc;
