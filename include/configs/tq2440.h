@@ -92,7 +92,11 @@
 #define CONFIG_CMD_PING
 #define CONFIG_CMD_REGINFO
 #define CONFIG_OF_LIBFDT 1
+#define CONFIG_MTD_DEVICE
 #define CONFIG_CMD_MTDPARTS
+#define CONFIG_MTD_PARTITIONS
+#define MTDIDS_DEFAULT "nand0=s3c_nand"
+#define MTDPARTS_DEFAULT "mtdparts=s3c_nand:256k@0(uboot),128k(env),6M(kernel),-(rootfs)"
 #define CONFIG_CMD_BOOTZ
 
 #define CONFIG_CMDLINE_EDITING
